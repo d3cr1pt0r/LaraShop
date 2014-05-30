@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $title; ?></title>
+	<?php echo HTML::style('css/bootstrap.css'); ?>
+	<?php echo HTML::script('js/jquery.js'); ?>
+	<?php echo HTML::script('js/bootstrap.js'); ?>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+  		<div class="container-fluid">
+    		<div class="navbar-header">
+				<?php echo HTML::link('/', 'Login Tutorial', array('class' => 'navbar-brand')); ?>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<?php if(Auth::user()): ?>
+					<li><?php echo HTML::link('user/logout', 'Logout'); ?></li>
+				<?php else: ?>
+					<li><?php echo HTML::link('user/login', 'Login'); ?></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<?php echo $__env->make('plugins.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<?php echo $__env->yieldContent('content'); ?>
+	</div>
+</body>
+</html>
