@@ -14,6 +14,7 @@ class CreateCategoriesTable extends Migration {
 			$table->string('name');
 			$table->boolean('active');
 			$table->integer('position');
+			$table->integer('level');
 			$table->timestamps();
 		});
 	}

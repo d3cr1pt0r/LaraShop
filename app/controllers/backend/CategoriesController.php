@@ -67,4 +67,16 @@ class CategoriesController extends Controller {
 		return Redirect::to('admin/categories');
 	}
 
+	public function getMoveup($id)
+	{
+		Categories::moveUp($id);
+		return Redirect::to('admin/categories');
+	}
+
+	public function getMovedown($id)
+	{
+		Categories::moveDown($id);
+		return Redirect::to('admin/categories');
+	}
+
 }

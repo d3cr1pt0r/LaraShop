@@ -17,6 +17,8 @@
 						<tr>
 							<td>{{ str_repeat('&nbsp;', $category["level"]*2).$category["category"] }}</td>
 							<td align="right">
+								<a href="{{ url('admin/categories/moveup/'.$category["id"]) }}"><span class="glyphicon glyphicon-circle-arrow-up" style="color: #3A3A3A;"></span></a>
+								<a href="{{ url('admin/categories/movedown/'.$category["id"]) }}"><span class="glyphicon glyphicon-circle-arrow-down" style="color: #3A3A3A;"></span></a>
 								{{ HTML::link('admin/categories/delete/'.$category["id"], 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')) }}
 								{{ HTML::link('admin/categories/edit/'.$category["id"], 'Edit', array('class' => 'btn btn-primary btn-xs', 'role' => 'button')) }}
 							</td>

@@ -30,29 +30,34 @@ class DatabaseSeeder extends Seeder {
 		// File categories table
 	    DB::table('categories')->delete();
 		DB::table('categories')->insert(array('parent_id' => '0',
-                                			  'name' => 'Category 1',
-                                			  'active' => '1',
-                                			  'position' => '0'
+                                			  'name' 	  => 'Category 1',
+                                			  'active' 	  => '1',
+                                			  'position'  => '0',
+                                			  'level'     => '1'
         ));
         DB::table('categories')->insert(array('parent_id' => '0',
-                                			  'name' => 'Category 2',
-                                			  'active' => '1',
-                                			  'position' => '1'
+                                			  'name' 	  => 'Category 2',
+                                			  'active' 	  => '1',
+                                			  'position'  => '1',
+                                			  'level' 	  => '1'
         ));
         DB::table('categories')->insert(array('parent_id' => '0',
-                                			  'name' => 'Category 3',
-                                			  'active' => '1',
-                                			  'position' => '2'
+                                			  'name' 	  => 'Category 3',
+                                			  'active'    => '1',
+                                			  'position'  => '2',
+                                			  'level'     => '1'
         ));
         DB::table('categories')->insert(array('parent_id' => '1',
-                                			  'name' => 'Category 1-1',
-                                			  'active' => '1',
-                                			  'position' => '0'
+                                			  'name' 	  => 'Category 1-1',
+                                			  'active'    => '1',
+                                			  'position'  => '0',
+                                			  'level'     => '2'
         ));
         DB::table('categories')->insert(array('parent_id' => '1',
-                                			  'name' => 'Category 1-2',
-                                			  'active' => '1',
-                                			  'position' => '1'
+                                			  'name' 	  => 'Category 1-2',
+                                			  'active'    => '1',
+                                			  'position'  => '1',
+                                			  'level'     => '2'
         ));
 	}
 
