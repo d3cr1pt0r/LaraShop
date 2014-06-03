@@ -4,13 +4,7 @@ class UserController extends BaseController {
 
 	public function __construct()
 	{
-		$this->beforeFilter('auth', array('only' => array('getRegister', 'postRegister')));
-	}
-
-	public function getLogin()
-	{
-		$title = 'Login page';
-		return View::make('user.login')->with('title', $title);
+		//$this->beforeFilter('auth', array('only' => array('getRegister', 'postRegister')));
 	}
 
 	public function postLogin()
@@ -18,12 +12,13 @@ class UserController extends BaseController {
 		if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
 		{
 			Session::flash('alert', array('type' => "success", 'messages' => array('You have been successfuly logged in')));
-			return Redirect::to('/');
+			return Redirect::to('/admin/login');
 		}
 		else
 		{
 			Session::flash('alert', array('type' => "error", 'messages' => array('Username or password was incorrect')));
-			return Redirect::action('UserController@getLogin');
+			return Redirect::to('/admin/login');
+			//return Redirect::action('UserController@getLogin');
 		}
 	}
 

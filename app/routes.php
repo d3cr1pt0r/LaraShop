@@ -1,18 +1,23 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Admin routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
+*/
+Route::group(array('namespace' => 'Admin'), function()
+{
+	Route::controller('admin/categories', 'CategoriesController');
+	Route::controller('admin', 'HomeController');
+
+	// Temporary redirect to admin
+	Route::get('/', function()
+	{
+		return Redirect::to('admin/login');
+	});
+});
+/*
+|--------------------------------------------------------------------------
+| Shop routes
+|--------------------------------------------------------------------------
 */
 
-Route::get('/', function()
-{
-	return View::make('home.index', array('title' => 'Index page'));
-});
-
-Route::controller('user', 'UserController');

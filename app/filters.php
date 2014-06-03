@@ -33,20 +33,20 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
+Route::filter('auth.admin', function()
 {
-	if(Auth::user() == null)
+	if(Auth::user() == null || Auth::user()->type != 'admin')
 	{
 		Session::flash('alert', array('type' => "error", 'messages' => array("You don't have permission to view this page!")));
-		return Redirect::to('/');
+		return Redirect::to('/admin/login');
 	}
-	else
+});
+
+Route::filter('auth.shop', function()
+{
+	if(Auth::user() == null || (Auth::user()->type != 'member' || Auth::user()->type != 'admin'))
 	{
-		if(Auth::user()->type != 'admin')
-		{
-			Session::flash('alert', array('type' => "error", 'messages' => array("You don't have permission to view this page!")));
-			return Redirect::to('/');
-		}
+		// Shop filter
 	}
 });
 
