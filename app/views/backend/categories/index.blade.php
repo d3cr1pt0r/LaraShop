@@ -2,7 +2,10 @@
 
 @section('content')
 	<div class="panel panel-primary">
-		<div class="panel-heading">{{ $panel_title }}</div>
+		<div class="panel-heading">
+			{{ $panel_title }}
+			{{ HTML::link('admin/categories/add', 'Add', array('class' => 'btn btn-default btn-xs pull-right', 'role' => 'button')) }}
+		</div>
 		<div class="panel-body">
 			<table class="table table-striped">
 				<thead>

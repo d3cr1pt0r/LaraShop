@@ -1,0 +1,10 @@
+
+<?php $__env->startSection('content'); ?>
+	<div class="panel panel-primary">
+		<div class="panel-heading"><?php echo $panel_title; ?></div>
+		<div class="panel-body">
+			
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

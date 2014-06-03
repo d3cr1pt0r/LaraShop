@@ -17,4 +17,16 @@ class CategoriesController extends Controller {
 		return View::make('backend.categories.index', $data);
 	}
 
+	public function getAdd()
+	{
+		$data['title'] = 'Categories | add';
+		$data['panel_title'] = 'Categories - add';
+		return View::make('backend.categories.add', $data);
+	}
+
+	public function postAdd()
+	{
+		return "post_Add";
+	}
+
 }
