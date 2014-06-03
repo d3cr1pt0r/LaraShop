@@ -1,0 +1,46 @@
+
+<?php $__env->startSection('content'); ?>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<?php echo $panel_title; ?>
+			<?php echo HTML::link('admin/products/add', 'Add', array('class' => 'btn btn-default btn-xs pull-right', 'role' => 'button')); ?>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Code</th>
+					<th>Stock</th>
+					<th>Active</th>
+					<th style="text-align:right;">Action</th>
+				</thead>
+				<tbody>
+					<?php foreach($products as $product): ?>
+						<tr>
+							<td><?php echo $product->name; ?></td>
+							<td><?php echo $product->category_id; ?></td>
+							<td><?php echo $product->code; ?></td>
+							<td><?php echo $product->stock; ?></td>
+							<?php if($product->active == 1): ?>
+								<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '<?php echo url('admin/products/toggleactive/'.$product->id); ?>';"></td>
+							<?php else: ?>
+								<td><input type="checkbox" name="active" value="1" onclick="window.location = '<?php echo url('admin/products/toggleactive/'.$product->id); ?>';"></td>
+							<?php endif; ?>
+							<td align="right">
+								<a href="<?php echo url('admin/products/moveup/'.$product->id); ?>"><span class="glyphicon glyphicon-circle-arrow-up" style="color: #3A3A3A;"></span></a>
+								<a href="<?php echo url('admin/products/movedown/'.$product->id); ?>"><span class="glyphicon glyphicon-circle-arrow-down" style="color: #3A3A3A;"></span></a>
+								<?php echo HTML::link('admin/products/delete/'.$product->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')); ?>
+								<?php echo HTML::link('admin/products/edit/'.$product->id, 'Edit', array('class' => 'btn btn-primary btn-xs', 'role' => 'button')); ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script>
+
+	</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

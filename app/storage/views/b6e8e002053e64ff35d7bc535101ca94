@@ -5,15 +5,25 @@
 		<div class="panel-body">
 		<?php echo Form::open(array('url' => 'admin/categories/edit/'.$category->id, 'method' => 'post')); ?>
 		<?php echo Form::text('name', $category->name, array('class' => 'form-control', 'placeholder' => 'Category name', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<select name="parent" class="form-control">
+		<select name="parent" class="form-control" style="margin-bottom: 10px;">
 			<option value="0">-PARENT-</option>
 			<?php foreach($categories as $cat): ?>
 				<?php if($cat->id == $category->parent_id): ?>
-					<option value="<?php echo $cat->id; ?>" selected="selected"><?php echo $cat->name; ?></option>
+					<option value="<?php echo $cat->id; ?>" selected><?php echo $cat->name; ?></option>
 				<?php else: ?>
 					<option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
 				<?php endif; ?>
 			<?php endforeach; ?>
+		</select>
+		<select name="active" class="form-control">
+			<option selected disabled>Product active</option>
+			<?php if($category->active): ?>
+				<option value="1" selected>Yes</option>
+				<option value="0">No</option>
+			<?php else: ?>
+				<option value="1">Yes</option>
+				<option value="0" selected>No</option>
+			<?php endif; ?>
 		</select>
 		<?php echo Form::submit('Update', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')); ?>
 		<?php echo Form::close(); ?>

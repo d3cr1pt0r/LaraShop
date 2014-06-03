@@ -3,15 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration {
+class CreateProductsTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('categories', function($table)
+		Schema::create('products', function($table)
 		{
 			$table->increments('id');
-			$table->integer('parent_id');
+			$table->integer('category_id');
+			$table->integer('code');
 			$table->string('name');
+			$table->string('description');
+			$table->decimal('price', 8, 2);
+			$table->integer('stock');
 			$table->boolean('active');
 			$table->integer('position');
 			$table->timestamps();
@@ -20,7 +24,7 @@ class CreateCategoriesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('categories');
+		Schema::drop('products');
 	}
 
 }

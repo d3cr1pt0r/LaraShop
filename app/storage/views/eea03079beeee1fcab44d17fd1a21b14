@@ -5,11 +5,16 @@
 		<div class="panel-body">
 		<?php echo Form::open(array('url' => 'admin/categories/add', 'method' => 'post')); ?>
 		<?php echo Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Category name', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<select name="parent" class="form-control">
+		<select name="parent" class="form-control" style="margin-bottom: 10px;">
 			<option value="0">-PARENT-</option>
 			<?php foreach($categories as $category): ?>
 				<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
 			<?php endforeach; ?>
+		</select>
+		<select name="active" class="form-control">
+			<option selected disabled>Product active</option>
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<?php echo Form::submit('Add', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')); ?>
 		<?php echo Form::close(); ?>

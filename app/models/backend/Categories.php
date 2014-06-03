@@ -1,5 +1,6 @@
 <?php namespace Admin;
 use Eloquent;
+
 class Categories extends Eloquent {
 
 	protected $table = 'categories';
@@ -44,7 +45,8 @@ class Categories extends Eloquent {
 	{
 		foreach($parent_categories as $parent_category) {
 			$level++;
-			$array[] = array('category' => $parent_category->name, 'level' => $level, 'id' => $parent_category->id);
+			$parent_category->level = $level;
+			$array[] = $parent_category;
 			$children = self::where('parent_id', '=', $parent_category->id)->orderBy('position', 'asc')->get();
 			self::to_tree($children, $array, $level);
 			$level--;

@@ -31,6 +31,7 @@ class CategoriesController extends Controller {
 		$category = new Categories();
 		$category->name = Input::get('name');
 		$category->parent_id = Input::get('parent');
+		$category->active = Input::get('active');
 		$category->save();
 
 		Session::flash('alert', array('type' => "success", 'messages' => array('Category '.$category->name.' added!')));
@@ -52,6 +53,7 @@ class CategoriesController extends Controller {
 		$category = Categories::find($id);
 		$category->name = Input::get('name');
 		$category->parent_id = Input::get('parent');
+		$category->active = Input::get('active');
 		$category->save();
 
 		Session::flash('alert', array('type' => "success", 'messages' => array('Category '.$category->name.' updated!')));
@@ -76,6 +78,15 @@ class CategoriesController extends Controller {
 	public function getMovedown($id)
 	{
 		Categories::moveDown($id);
+		return Redirect::to('admin/categories');
+	}
+
+	public function getToggleactive($id)
+	{
+		$category = Categories::find($id);
+		$category->active = !$category->active;
+		$category->save();
+
 		return Redirect::to('admin/categories');
 	}
 

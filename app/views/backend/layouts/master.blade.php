@@ -15,9 +15,9 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li>{{ HTML::link('/admin/categories', 'Categories') }}</li>
-				<li><a href="#!">Products</a></li>
-				<li><a href="#!">Carousel</a></li>
-				<li><a href="#!">Orders</a></li>
+				<li>{{ HTML::link('/admin/products', 'Products') }}</li>
+				<li>{{ HTML::link('/admin/carousel', 'Carousel') }}</li>
+				<li>{{ HTML::link('/admin/orders', 'Orders') }}</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>{{ HTML::link('admin/logout', 'Logout') }}</li>
