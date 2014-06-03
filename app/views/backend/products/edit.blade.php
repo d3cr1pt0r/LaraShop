@@ -4,33 +4,53 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">{{ $panel_title }}</div>
 		<div class="panel-body">
-		{{ Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post')) }}
-		{{ Form::text('name', $product->name, array('class' => 'form-control', 'placeholder' => 'Product name', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-		{{ Form::text('description', $product->description, array('class' => 'form-control', 'placeholder' => 'Product description', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-		{{ Form::text('price', $product->price, array('class' => 'form-control', 'placeholder' => 'Product price', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-		{{ Form::text('code', $product->code, array('class' => 'form-control', 'placeholder' => 'Product code', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-		{{ Form::text('stock', $product->stock, array('class' => 'form-control', 'placeholder' => 'Product stock', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-		<select name="active" class="form-control" style="margin-bottom: 10px;">
-			<option selected disabled>Product active</option>
-			@if($product->active)
-				<option value="1" selected>Yes</option>
-				<option value="0">No</option>
-			@else
-				<option value="1">Yes</option>
-				<option value="0" selected>No</option>
-			@endif
-		</select>
-		<select name="category" class="form-control">
-			@foreach($categories as $category)
-				@if($category->id == $product->category_id)
-					<option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-				@else
-					<option value="{{ $category->id }}">{{ $category->name }}</option>
-				@endif
-			@endforeach
-		</select>
-		{{ Form::submit('Update', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')) }}
-		{{ Form::close() }}
+			{{ Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post')) }}
+				<div class="form-group">
+					<label>Product name</label>
+					<input type="text" class="form-control" name="name" value="{{ $product->name }}" required>
+				</div>
+				<div class="form-group">
+					<label>Product description</label>
+					<textarea class="ckeditor" name="description">{{ $product->description }}</textarea>
+				</div>
+				<div class="form-group">
+					<label>Product price</label>
+					<input type="text" class="form-control" name="price" value="{{ $product->price }}" required>
+				</div>
+				<div class="form-group">
+					<label>Product code</label>
+					<input type="text" class="form-control" name="code" value="{{ $product->code }}" required>
+				</div>
+				<div class="form-group">
+					<label>Product stock</label>
+					<input type="text" class="form-control" name="stock" value="{{ $product->stock }}" required>
+				</div>
+				<div class="form-group">
+					<label>Product active</label>
+					<select name="active" class="form-control" style="margin-bottom: 10px;">
+						@if($product->active)
+							<option value="1" selected>Yes</option>
+							<option value="0">No</option>
+						@else
+							<option value="1">Yes</option>
+							<option value="0" selected>No</option>
+						@endif
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Product active</label>
+					<select name="category" class="form-control">
+						@foreach($categories as $category)
+							@if($category->id == $product->category_id)
+								<option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+							@else
+								<option value="{{ $category->id }}">{{ $category->name }}</option>
+							@endif
+						@endforeach
+					</select>
+				</div>
+				{{ Form::submit('Add', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')) }}
+			{{ Form::close() }}
 		</div>
 	</div>
 @stop

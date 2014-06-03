@@ -6,6 +6,7 @@
 	{{ HTML::style('css/bootstrap.css') }}
 	{{ HTML::script('js/jquery.js') }}
 	{{ HTML::script('js/bootstrap.js') }}
+	{{ HTML::script('libs/ckeditor/ckeditor.js') }}
 </head>
 <body>
 	<nav class="navbar navbar-inverse" role="navigation">

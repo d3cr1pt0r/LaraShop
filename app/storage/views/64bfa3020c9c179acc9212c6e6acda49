@@ -3,25 +3,84 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading"><?php echo $panel_title; ?></div>
 		<div class="panel-body">
-		<?php echo Form::open(array('url' => 'admin/products/add', 'method' => 'post')); ?>
-		<?php echo Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Product name', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<?php echo Form::text('description', '', array('class' => 'form-control', 'placeholder' => 'Product description', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<?php echo Form::text('price', '', array('class' => 'form-control', 'placeholder' => 'Product price', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<?php echo Form::text('code', '', array('class' => 'form-control', 'placeholder' => 'Product code', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<?php echo Form::text('stock', '', array('class' => 'form-control', 'placeholder' => 'Product stock', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
-		<select name="active" class="form-control" style="margin-bottom: 10px;">
-			<option selected disabled>Product active</option>
-			<option value="1">Yes</option>
-			<option value="0">No</option>
-		</select>
-		<select name="category" class="form-control">
-			<?php foreach($categories as $category): ?>
-				<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-			<?php endforeach; ?>
-		</select>
-		<?php echo Form::submit('Add', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')); ?>
-		<?php echo Form::close(); ?>
+			<?php echo Form::open(array('url' => 'admin/products/add', 'method' => 'post', 'files' => true)); ?>
+				<div class="form-group">
+					<label>Product name</label>
+					<input type="text" class="form-control" name="name" required>
+				</div>
+				<div class="form-group">
+					<label>Product description</label>
+					<textarea class="ckeditor" name="description"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Product price</label>
+					<input type="text" class="form-control" name="price" required>
+				</div>
+				<div class="form-group">
+					<label>Product code</label>
+					<input type="text" class="form-control" name="code" required>
+				</div>
+				<div class="form-group">
+					<label>Product stock</label>
+					<input type="text" class="form-control" name="stock" required>
+				</div>
+				<div class="form-group">
+					<label>Product active</label>
+					<select name="active" class="form-control" style="margin-bottom: 10px;">
+						<option value="1">Yes</option>
+						<option value="0">No</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Product active</label>
+					<select name="category" class="form-control">
+						<?php foreach($categories as $category): ?>
+							<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+
+				<button type="button" id="iu_add" class="btn btn-primary" style="width: 100%;">Add images</button>
+				<input type="file" id="iu_dialog" name="files[]" multiple style="display: none;">
+				<table class="table table-condensed" id="iu_files">
+					<thead>
+						<th>#</th>
+						<th>Filename</th>
+						<th>Size</th>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+
+				<?php echo Form::submit('Add', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')); ?>
+			<?php echo Form::close(); ?>
 		</div>
 	</div>
+
+	<script>
+		//Image upload script
+		$("#iu_files").hide();
+		$("#iu_add").click(function()
+		{
+			$("#iu_dialog").trigger("click");
+		});
+
+		$('#iu_dialog').change(function () {
+			$("#iu_files tbody").html("");
+			var files = this.files;
+			for(var i=0;i<files.length;i++)
+			{
+				var filename = files[i].name;
+				var filesize = Math.round(files[i].size / 1024);
+
+				console.log(filesize);
+				$("#iu_files tbody").append("<tr><td>"+(i+1)+"</td><td>"+filename+"</td><td>"+filesize+"kb</td></tr>");
+			}
+			$("#iu_files").slideDown();
+		});
+
+	</script>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

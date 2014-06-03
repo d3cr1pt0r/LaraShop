@@ -37,6 +37,17 @@ class ProductsController extends Controller {
 		$product->active = Input::get('active');
 		$product->category_id = Input::get('category');
 		$product->save();
+		
+		if(Input::hasFile('files'))
+		{
+			$files = Input::file('files');
+			$foldername = 'uploads/product_images/'.str_random(32).'/';
+			foreach($files as $file)
+			{
+				$filename = str_random(32).'.'.$file->getClientOriginalExtension();
+				$file->move($foldername, $filename);
+			}
+		}
 
 		Session::flash('alert', array('type' => "success", 'messages' => array('Product '.$product->name.' added!')));
 		return Redirect::to('admin/products');

@@ -26,7 +26,7 @@
 				<option value="0" selected>No</option>
 			@endif
 		</select>
-		{{ Form::submit('Update', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')) }}
+		{{ Form::submit('Update', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')) }}
 		{{ Form::close() }}
 		</div>
 	</div>

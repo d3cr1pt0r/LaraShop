@@ -17,7 +17,7 @@
 			<option value="1">Yes</option>
 			<option value="0">No</option>
 		</select>
-		{{ Form::submit('Add', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')) }}
+		{{ Form::submit('Add', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')) }}
 		{{ Form::close() }}
 		</div>
 	</div>
