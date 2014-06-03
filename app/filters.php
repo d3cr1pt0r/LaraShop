@@ -37,6 +37,9 @@ Route::filter('auth.admin', function()
 {
 	if(Auth::user() == null || Auth::user()->type != 'admin')
 	{
+		if(Auth::user() != null && Auth::user()->type == 'member')
+			return Redirect::to('/admin/logout');
+
 		Session::flash('alert', array('type' => "error", 'messages' => array("You don't have permission to view this page!")));
 		return Redirect::to('/admin/login');
 	}

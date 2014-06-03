@@ -12,13 +12,12 @@
 		@include('backend.plugins.alerts')
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<div class="well" style="margin-top: 50px;">
-					<legend>Please sign in</legend>
+				<div class="well" style="margin-top: 50px; text-align: center;">
+					<legend>LaraShop - Login</legend>
 					{{ Form::open(array('url' => 'admin/login', 'method' => 'post')) }}
 					{{ Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Email', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
 					{{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password', 'required' => 'required', 'style' => 'margin-bottom: 10px')) }}
-					{{ Form::submit('Login', array('class' => 'btn btn-success')) }}
-					{{ HTML::link('user/register', 'Register', array('class' => 'btn btn-primary')) }}
+					{{ Form::submit('Login', array('class' => 'btn btn-success', 'style' => 'width: 100%;')) }}
 					{{ Form::close() }}
 				</div>
 			</div>

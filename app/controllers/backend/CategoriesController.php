@@ -10,7 +10,7 @@ class CategoriesController extends Controller {
 
 	public function getIndex()
 	{
-		$data['title'] = 'Categories | edit';
+		$data['title'] = 'Categories';
 		$data['panel_title'] = 'Categories';
 		$data['categories'] = Categories::getAllCategories();
 
@@ -19,14 +19,52 @@ class CategoriesController extends Controller {
 
 	public function getAdd()
 	{
-		$data['title'] = 'Categories | add';
-		$data['panel_title'] = 'Categories - add';
+		$data['title'] = 'Categories | Add';
+		$data['panel_title'] = 'Categories - Add';
+		$data['categories'] = Categories::all();
+
 		return View::make('backend.categories.add', $data);
 	}
 
 	public function postAdd()
 	{
-		return "post_Add";
+		$category = new Categories();
+		$category->name = Input::get('name');
+		$category->parent_id = Input::get('parent');
+		$category->save();
+
+		Session::flash('alert', array('type' => "success", 'messages' => array('Category '.$category->name.' added!')));
+		return Redirect::to('admin/categories');
+	}
+
+	public function getEdit($id)
+	{
+		$data['title'] = 'Categories | Edit';
+		$data['panel_title'] = 'Categories - Edit';
+		$data['categories'] = Categories::all();
+		$data['category'] = Categories::find($id);
+
+		return View::make('backend.categories.edit', $data);
+	}
+
+	public function postEdit($id)
+	{
+		$category = Categories::find($id);
+		$category->name = Input::get('name');
+		$category->parent_id = Input::get('parent');
+		$category->save();
+
+		Session::flash('alert', array('type' => "success", 'messages' => array('Category '.$category->name.' updated!')));
+		return Redirect::to('admin/categories');
+	}
+
+	public function getDelete($id)
+	{
+		$category = Categories::find($id);
+		$category->delete();
+
+		Session::flash('alert', array('type' => "success", 'messages' => array('Category '.$category->name.' deleted!')));
+		return Redirect::to('admin/categories');
 	}
 
 }

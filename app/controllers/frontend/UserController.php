@@ -1,38 +1,6 @@
-<?php
+<?php namespace Admin;
 
-class UserController extends BaseController {
-
-	public function __construct()
-	{
-		//$this->beforeFilter('auth', array('only' => array('getRegister', 'postRegister')));
-	}
-
-	public function postLogin()
-	{
-		if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
-		{
-			Session::flash('alert', array('type' => "success", 'messages' => array('You have been successfuly logged in')));
-			return Redirect::to('/admin/login');
-		}
-		else
-		{
-			Session::flash('alert', array('type' => "error", 'messages' => array('Username or password was incorrect')));
-			return Redirect::to('/admin/login');
-			//return Redirect::action('UserController@getLogin');
-		}
-	}
-
-	public function getLogout()
-	{
-		Auth::logout();
-		return Redirect::to('/');
-	}
-
-	public function getRegister()
-	{
-		$title = 'Register page';
-		return View::make('user.register')->with('title', $title);
-	}
+class UserController extends Controller {
 
 	public function postRegister()
 	{
@@ -66,5 +34,5 @@ class UserController extends BaseController {
 			return Redirect::action('UserController@getRegister');
 		}
 	}
-
+	
 }

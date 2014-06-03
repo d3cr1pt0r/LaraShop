@@ -20,7 +20,7 @@ class HomeController extends Controller {
 
 	public function postLogin()
 	{
-		if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+		if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'), 'type' => 'admin')))
 		{
 			Session::flash('alert', array('type' => "success", 'messages' => array('You have been successfuly logged in')));
 			return Redirect::to('/admin');

@@ -1,0 +1,23 @@
+
+<?php $__env->startSection('content'); ?>
+	<div class="panel panel-primary">
+		<div class="panel-heading"><?php echo $panel_title; ?></div>
+		<div class="panel-body">
+		<?php echo Form::open(array('url' => 'admin/categories/edit/'.$category->id, 'method' => 'post')); ?>
+		<?php echo Form::text('name', $category->name, array('class' => 'form-control', 'placeholder' => 'Category name', 'required' => 'required', 'style' => 'margin-bottom: 10px')); ?>
+		<select name="parent" class="form-control">
+			<option value="0">-PARENT-</option>
+			<?php foreach($categories as $cat): ?>
+				<?php if($cat->id == $category->parent_id): ?>
+					<option value="<?php echo $cat->id; ?>" selected="selected"><?php echo $cat->name; ?></option>
+				<?php else: ?>
+					<option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</select>
+		<?php echo Form::submit('Update', array('class' => 'btn btn-default', 'style' => 'margin-top: 10px; width: 100%;')); ?>
+		<?php echo Form::close(); ?>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

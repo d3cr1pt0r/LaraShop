@@ -16,7 +16,10 @@
 					@foreach($categories as $category)
 						<tr>
 							<td>{{ str_repeat('&nbsp;', $category["level"]*2).$category["category"] }}</td>
-							<td align="right">{{ HTML::link('#!', 'Edit', array('class' => 'btn btn-primary btn-xs', 'role' => 'button')) }}</td>
+							<td align="right">
+								{{ HTML::link('admin/categories/delete/'.$category["id"], 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')) }}
+								{{ HTML::link('admin/categories/edit/'.$category["id"], 'Edit', array('class' => 'btn btn-primary btn-xs', 'role' => 'button')) }}
+							</td>
 						</tr>
 					@endforeach
 				</tbody>
