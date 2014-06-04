@@ -6,6 +6,7 @@
 */
 Route::group(array('namespace' => 'Admin'), function()
 {
+	Route::controller('admin/carousel', 'CarouselController');
 	Route::controller('admin/products', 'ProductsController');
 	Route::controller('admin/categories', 'CategoriesController');
 	Route::controller('admin', 'HomeController');

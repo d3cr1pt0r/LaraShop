@@ -93,6 +93,11 @@ class DatabaseSeeder extends Seeder {
                                                     'active'      => '1',
                                                     'position'    => '4'
                 ));
+
+                DB::table('carousel')->insert(array('name'     => 'Carousel 1',
+                                                    'active'   => '1',
+                                                    'position' => '0'
+                ));
 	}
 
 }

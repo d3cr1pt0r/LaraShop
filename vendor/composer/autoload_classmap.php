@@ -7,6 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Admin\\BaseModel' => $baseDir . '/app/models/backend/BaseModel.php',
+    'Admin\\Carousel' => $baseDir . '/app/models/backend/Carousel.php',
+    'Admin\\CarouselController' => $baseDir . '/app/controllers/backend/CarouselController.php',
+    'Admin\\CarouselImages' => $baseDir . '/app/models/backend/CarouselImages.php',
     'Admin\\Categories' => $baseDir . '/app/models/backend/Categories.php',
     'Admin\\CategoriesController' => $baseDir . '/app/controllers/backend/CategoriesController.php',
     'Admin\\HomeController' => $baseDir . '/app/controllers/backend/HomeController.php',
@@ -35,8 +38,8 @@ return array(
     'ClassPreloader\\Parser\\DirVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/DirVisitor.php',
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
+    'CreateCarouselTable' => $baseDir . '/app/database/migrations/2014_06_04_230025_create_carousel_table.php',
     'CreateCategoriesTable' => $baseDir . '/app/database/migrations/2014_06_02_222155_create_categories_table.php',
-    'CreateProductImagesTable' => $baseDir . '/app/database/migrations/2014_06_04_073035_create_product_images_table.php',
     'CreateProductsTable' => $baseDir . '/app/database/migrations/2014_06_03_094702_create_products_table.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_06_02_222341_create_users_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',

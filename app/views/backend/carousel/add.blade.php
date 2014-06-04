@@ -4,40 +4,16 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">{{ $panel_title }}</div>
 		<div class="panel-body">
-			{{ Form::open(array('url' => 'admin/products/add', 'method' => 'post', 'files' => true)) }}
+			{{ Form::open(array('url' => 'admin/carousel/add', 'method' => 'post', 'files' => true)) }}
 				<div class="form-group">
-					<label>Product name</label>
+					<label>Carousel name</label>
 					<input type="text" class="form-control" name="name" required>
-				</div>
-				<div class="form-group">
-					<label>Product description</label>
-					<textarea class="ckeditor" name="description"></textarea>
-				</div>
-				<div class="form-group">
-					<label>Product price</label>
-					<input type="text" class="form-control" name="price" required>
-				</div>
-				<div class="form-group">
-					<label>Product code</label>
-					<input type="text" class="form-control" name="code" required>
-				</div>
-				<div class="form-group">
-					<label>Product stock</label>
-					<input type="text" class="form-control" name="stock" required>
 				</div>
 				<div class="form-group">
 					<label>Product active</label>
 					<select name="active" class="form-control" style="margin-bottom: 10px;">
 						<option value="1">Yes</option>
 						<option value="0">No</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Product category</label>
-					<select name="category" class="form-control">
-						@foreach($categories as $category)
-							<option value="{{ $category->id }}">{{ $category->name }}</option>
-						@endforeach
 					</select>
 				</div>
 

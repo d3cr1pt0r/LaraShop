@@ -3,31 +3,15 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading"><?php echo $panel_title; ?></div>
 		<div class="panel-body">
-			<?php echo Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post', 'files' => true)); ?>
+			<?php echo Form::open(array('url' => 'admin/carousel/edit/'.$carousel->id, 'method' => 'post', 'files' => true)); ?>
 				<div class="form-group">
-					<label>Product name</label>
-					<input type="text" class="form-control" name="name" value="<?php echo $product->name; ?>" required>
+					<label>Carousel name</label>
+					<input type="text" class="form-control" name="name" value="<?php echo $carousel->name; ?>" required>
 				</div>
 				<div class="form-group">
-					<label>Product description</label>
-					<textarea class="ckeditor" name="description"><?php echo $product->description; ?></textarea>
-				</div>
-				<div class="form-group">
-					<label>Product price</label>
-					<input type="text" class="form-control" name="price" value="<?php echo $product->price; ?>" required>
-				</div>
-				<div class="form-group">
-					<label>Product code</label>
-					<input type="text" class="form-control" name="code" value="<?php echo $product->code; ?>" required>
-				</div>
-				<div class="form-group">
-					<label>Product stock</label>
-					<input type="text" class="form-control" name="stock" value="<?php echo $product->stock; ?>" required>
-				</div>
-				<div class="form-group">
-					<label>Product active</label>
+					<label>Carousel active</label>
 					<select name="active" class="form-control" style="margin-bottom: 10px;">
-						<?php if($product->active): ?>
+						<?php if($carousel->active): ?>
 							<option value="1" selected>Yes</option>
 							<option value="0">No</option>
 						<?php else: ?>
@@ -37,19 +21,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Product active</label>
-					<select name="category" class="form-control">
-						<?php foreach($categories as $category): ?>
-							<?php if($category->id == $product->category_id): ?>
-								<option value="<?php echo $category->id; ?>" selected><?php echo $category->name; ?></option>
-							<?php else: ?>
-								<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-							<?php endif; ?>
-						<?php endforeach; ?>
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Product images</label>
+					<label>Carousel images</label>
 					<button type="button" id="iu_add" class="btn btn-primary" style="width: 100%;">Add images</button>
 					<input type="file" id="iu_dialog" name="files[]" multiple style="display: none;">
 					<table class="table table-condensed" id="iu_files">
@@ -69,17 +41,17 @@
 							<th style="text-align:right;">Action</th>
 						</thead>
 						<tbody>
-							<?php foreach($product->images as $image): ?>
+							<?php foreach($carousel->images as $image): ?>
 								<tr>
 									<td>
 										<img src="<?php echo asset('libs/slir/w100/'.$image->src); ?>"/>
 									</td>
 									<?php if($image->active == 1): ?>
-										<td><a href="<?php echo url('admin/products/toggleactiveimage/'.$image->id); ?>"><span class="label label-success">Active</span></a></td>
+										<td><a href="<?php echo url('admin/carousel/toggleactiveimage/'.$image->id); ?>"><span class="label label-success">Active</span></a></td>
 									<?php else: ?>
-										<td><a href="<?php echo url('admin/products/toggleactiveimage/'.$image->id); ?>"><span class="label label-danger">Inactive</span></a></td>
+										<td><a href="<?php echo url('admin/carousel/toggleactiveimage/'.$image->id); ?>"><span class="label label-danger">Inactive</span></a></td>
 									<?php endif; ?>
-									<td align="right"><?php echo HTML::link('admin/products/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')); ?></td>
+									<td align="right"><?php echo HTML::link('admin/carousel/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')); ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>

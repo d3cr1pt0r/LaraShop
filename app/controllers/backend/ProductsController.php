@@ -87,7 +87,14 @@ class ProductsController extends Controller {
 		if(Input::hasFile('files'))
 		{
 			$files = Input::file('files');
-			$foldername = 'uploads/product_images/'.str_random(32).'/';
+			$foldername = null;
+
+			$product_images = Products::find($id)->images()->get();
+			if(sizeof($product_images) > 0)
+				$foldername = $product_images->toArray()[0]['folder'];
+			else
+				$foldername = 'uploads/product_images/'.str_random(32).'/';
+
 			foreach($files as $file)
 			{
 				$filename = str_random(32).'.'.$file->getClientOriginalExtension();
