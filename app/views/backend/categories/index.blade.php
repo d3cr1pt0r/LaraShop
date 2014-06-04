@@ -18,9 +18,9 @@
 						<tr>
 							<td>{{ str_repeat('&nbsp;', $category->level*2).$category->name }}</td>
 							@if($category->active == 1)
-								<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '{{ url('admin/categories/toggleactive/'.$category->id) }}';"></td>
+								<td><a href="{{ url('admin/categories/toggleactive/'.$category->id) }}"><span class="label label-success">Active</span></a></td>
 							@else
-								<td><input type="checkbox" name="active" value="1" onclick="window.location = '{{ url('admin/categories/toggleactive/'.$category->id) }}';"></td>
+								<td><a href="{{ url('admin/categories/toggleactive/'.$category->id) }}"><span class="label label-danger">Inactive</span></a></td>
 							@endif
 							<td align="right">
 								<a href="{{ url('admin/categories/moveup/'.$category->id) }}"><span class="glyphicon glyphicon-circle-arrow-up" style="color: #3A3A3A;"></span></a>

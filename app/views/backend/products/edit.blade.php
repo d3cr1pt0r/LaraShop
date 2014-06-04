@@ -66,21 +66,21 @@
 					<table class="table table-condensed">
 						<thead>
 							<th>Image</th>
-							<th>Active</th>
-							<th>Action</th>
+							<th>Status</th>
+							<th style="text-align:right;">Action</th>
 						</thead>
 						<tbody>
 							@foreach($product->images as $image)
 								<tr>
-									<td><img src="{{ asset($image->src) }}" width="150"></td>
 									<td>
-										@if($image->active == 1)
-											<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '{{ url('admin/products/toggleactiveimage/'.$image->id) }}';"></td>
-										@else
-											<td><input type="checkbox" name="active" value="1" onclick="window.location = '{{ url('admin/products/toggleactiveimage/'.$image->id) }}';"></td>
-										@endif
+										<img src="{{ asset('libs/slir/w100/'.$image->src) }}"/>
 									</td>
-									<td>{{ HTML::link('admin/products/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')) }}</td>
+									@if($image->active == 1)
+										<td><a href="{{ url('admin/products/toggleactiveimage/'.$image->id) }}"><span class="label label-success">Active</span></a></td>
+									@else
+										<td><a href="{{ url('admin/products/toggleactiveimage/'.$image->id) }}"><span class="label label-danger">Inactive</span></a></td>
+									@endif
+									<td align="right">{{ HTML::link('admin/products/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')) }}</td>
 								</tr>
 							@endforeach
 						</tbody>

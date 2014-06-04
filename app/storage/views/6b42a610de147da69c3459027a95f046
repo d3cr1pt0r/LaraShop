@@ -17,9 +17,9 @@
 						<tr>
 							<td><?php echo str_repeat('&nbsp;', $category->level*2).$category->name; ?></td>
 							<?php if($category->active == 1): ?>
-								<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '<?php echo url('admin/categories/toggleactive/'.$category->id); ?>';"></td>
+								<td><a href="<?php echo url('admin/categories/toggleactive/'.$category->id); ?>"><span class="label label-success">Active</span></a></td>
 							<?php else: ?>
-								<td><input type="checkbox" name="active" value="1" onclick="window.location = '<?php echo url('admin/categories/toggleactive/'.$category->id); ?>';"></td>
+								<td><a href="<?php echo url('admin/categories/toggleactive/'.$category->id); ?>"><span class="label label-danger">Inactive</span></a></td>
 							<?php endif; ?>
 							<td align="right">
 								<a href="<?php echo url('admin/categories/moveup/'.$category->id); ?>"><span class="glyphicon glyphicon-circle-arrow-up" style="color: #3A3A3A;"></span></a>
