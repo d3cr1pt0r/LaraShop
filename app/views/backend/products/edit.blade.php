@@ -4,7 +4,7 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">{{ $panel_title }}</div>
 		<div class="panel-body">
-			{{ Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post')) }}
+			{{ Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post', 'files' => true)) }}
 				<div class="form-group">
 					<label>Product name</label>
 					<input type="text" class="form-control" name="name" value="{{ $product->name }}" required>
@@ -49,8 +49,64 @@
 						@endforeach
 					</select>
 				</div>
+				<div class="form-group">
+					<label>Product images</label>
+					<button type="button" id="iu_add" class="btn btn-primary" style="width: 100%;">Add images</button>
+					<input type="file" id="iu_dialog" name="files[]" multiple style="display: none;">
+					<table class="table table-condensed" id="iu_files">
+						<thead>
+							<th>#</th>
+							<th>Filename</th>
+							<th>Size</th>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+					<table class="table table-condensed">
+						<thead>
+							<th>Image</th>
+							<th>Active</th>
+							<th>Action</th>
+						</thead>
+						<tbody>
+							@foreach($product->images as $image)
+								<tr>
+									<td><img src="{{ asset($image->src) }}" width="150"></td>
+									<td>{{ $image->active }}</td>
+									<td>Delete</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
 				{{ Form::submit('Add', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')) }}
 			{{ Form::close() }}
 		</div>
 	</div>
+
+	<script>
+		//Image upload script
+		$("#iu_files").hide();
+		$("#iu_add").click(function()
+		{
+			$("#iu_dialog").trigger("click");
+		});
+
+		$('#iu_dialog').change(function () {
+			$("#iu_files tbody").html("");
+			var files = this.files;
+			for(var i=0;i<files.length;i++)
+			{
+				var filename = files[i].name;
+				var filesize = Math.round(files[i].size / 1024);
+
+				console.log(filesize);
+				$("#iu_files tbody").append("<tr><td>"+(i+1)+"</td><td>"+filename+"</td><td>"+filesize+"kb</td></tr>");
+			}
+			$("#iu_files").slideDown();
+		});
+
+	</script>
+
 @stop

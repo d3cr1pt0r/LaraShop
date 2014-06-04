@@ -3,7 +3,7 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading"><?php echo $panel_title; ?></div>
 		<div class="panel-body">
-			<?php echo Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post')); ?>
+			<?php echo Form::open(array('url' => 'admin/products/edit/'.$product->id, 'method' => 'post', 'files' => true)); ?>
 				<div class="form-group">
 					<label>Product name</label>
 					<input type="text" class="form-control" name="name" value="<?php echo $product->name; ?>" required>
@@ -48,9 +48,65 @@
 						<?php endforeach; ?>
 					</select>
 				</div>
+				<div class="form-group">
+					<label>Product images</label>
+					<button type="button" id="iu_add" class="btn btn-primary" style="width: 100%;">Add images</button>
+					<input type="file" id="iu_dialog" name="files[]" multiple style="display: none;">
+					<table class="table table-condensed" id="iu_files">
+						<thead>
+							<th>#</th>
+							<th>Filename</th>
+							<th>Size</th>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+					<table class="table table-condensed">
+						<thead>
+							<th>Image</th>
+							<th>Active</th>
+							<th>Action</th>
+						</thead>
+						<tbody>
+							<?php foreach($product->images as $image): ?>
+								<tr>
+									<td><img src="<?php echo asset($image->src); ?>" width="150"></td>
+									<td><?php echo $image->active; ?></td>
+									<td>Delete</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
 				<?php echo Form::submit('Add', array('class' => 'btn btn-success', 'style' => 'margin-top: 10px; width: 100%;')); ?>
 			<?php echo Form::close(); ?>
 		</div>
 	</div>
+
+	<script>
+		//Image upload script
+		$("#iu_files").hide();
+		$("#iu_add").click(function()
+		{
+			$("#iu_dialog").trigger("click");
+		});
+
+		$('#iu_dialog').change(function () {
+			$("#iu_files tbody").html("");
+			var files = this.files;
+			for(var i=0;i<files.length;i++)
+			{
+				var filename = files[i].name;
+				var filesize = Math.round(files[i].size / 1024);
+
+				console.log(filesize);
+				$("#iu_files tbody").append("<tr><td>"+(i+1)+"</td><td>"+filename+"</td><td>"+filesize+"kb</td></tr>");
+			}
+			$("#iu_files").slideDown();
+		});
+
+	</script>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

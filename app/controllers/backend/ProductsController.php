@@ -46,6 +46,12 @@ class ProductsController extends Controller {
 			{
 				$filename = str_random(32).'.'.$file->getClientOriginalExtension();
 				$file->move($foldername, $filename);
+
+				$product_images = new ProductImages();
+				$product_images->product_id = $product->id;
+				$product_images->src = $foldername.$filename;
+				$product_images->active = '1';
+				$product_images->save();
 			}
 		}
 
@@ -74,6 +80,23 @@ class ProductsController extends Controller {
 		$product->active = Input::get('active');
 		$product->category_id = Input::get('category');
 		$product->save();
+
+		if(Input::hasFile('files'))
+		{
+			$files = Input::file('files');
+			$foldername = 'uploads/product_images/'.str_random(32).'/';
+			foreach($files as $file)
+			{
+				$filename = str_random(32).'.'.$file->getClientOriginalExtension();
+				$file->move($foldername, $filename);
+
+				$product_images = new ProductImages();
+				$product_images->product_id = $product->id;
+				$product_images->src = $foldername.$filename;
+				$product_images->active = '1';
+				$product_images->save();
+			}
+		}
 
 		Session::flash('alert', array('type' => "success", 'messages' => array('Product '.$product->name.' updated!')));
 		return Redirect::to('admin/products');
