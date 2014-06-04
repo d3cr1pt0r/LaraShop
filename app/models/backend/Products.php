@@ -1,7 +1,7 @@
 <?php namespace Admin;
 use Eloquent;
 
-class Products extends Eloquent {
+class Products extends BaseModel {
 
 	protected $table = 'products';
 
@@ -13,16 +13,6 @@ class Products extends Eloquent {
 	public function images()
 	{
 		return $this->hasMany('Admin\ProductImages', 'product_id');
-	}
-
-	public static function moveUp($id)
-	{
-
-	}
-
-	public static function moveDown($id)
-	{
-
 	}
 
 }

@@ -83,10 +83,7 @@ class CategoriesController extends Controller {
 
 	public function getToggleactive($id)
 	{
-		$category = Categories::find($id);
-		$category->active = !$category->active;
-		$category->save();
-
+		Categories::toggleActive($id);
 		return Redirect::to('admin/categories');
 	}
 

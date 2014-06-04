@@ -1,7 +1,7 @@
 <?php namespace Admin;
 use Eloquent;
 
-class Categories extends Eloquent {
+class Categories extends BaseModel {
 
 	protected $table = 'categories';
 

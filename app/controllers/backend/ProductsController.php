@@ -125,10 +125,7 @@ class ProductsController extends Controller {
 
 	public function getToggleactive($id)
 	{
-		$product = Products::find($id);
-		$product->active = !$product->active;
-		$product->save();
-
+		Products::toggleActive($id);
 		return Redirect::to('admin/products');
 	}
 
