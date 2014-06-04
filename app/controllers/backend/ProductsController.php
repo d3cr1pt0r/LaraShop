@@ -1,5 +1,5 @@
 <?php namespace Admin;
-use Controller, View, Auth, Input, Session, Redirect;
+use Controller, View, Auth, Input, File, Session, Redirect, URL;
 
 class ProductsController extends Controller {
 
@@ -12,7 +12,7 @@ class ProductsController extends Controller {
 	{
 		$data['title'] = 'Products';
 		$data['panel_title'] = 'Products';
-		$data['products'] = Products::all();
+		$data['products'] = Products::orderBy('position', 'asc')->get();
 
 		return View::make('backend.products.index', $data);
 	}
@@ -36,6 +36,7 @@ class ProductsController extends Controller {
 		$product->stock = Input::get('stock');
 		$product->active = Input::get('active');
 		$product->category_id = Input::get('category');
+		$product->position = Products::nextPosition();
 		$product->save();
 		
 		if(Input::hasFile('files'))
@@ -49,8 +50,10 @@ class ProductsController extends Controller {
 
 				$product_images = new ProductImages();
 				$product_images->product_id = $product->id;
+				$product_images->folder = $foldername;
 				$product_images->src = $foldername.$filename;
 				$product_images->active = '1';
+				$product_images->position = ProductImages::nextPosition();
 				$product_images->save();
 			}
 		}
@@ -92,8 +95,10 @@ class ProductsController extends Controller {
 
 				$product_images = new ProductImages();
 				$product_images->product_id = $product->id;
+				$product_images->folder = $foldername;
 				$product_images->src = $foldername.$filename;
 				$product_images->active = '1';
+				$product_images->position = ProductImages::nextPosition();
 				$product_images->save();
 			}
 		}
@@ -109,6 +114,16 @@ class ProductsController extends Controller {
 
 		Session::flash('alert', array('type' => "success", 'messages' => array('Product '.$product->name.' deleted!')));
 		return Redirect::to('admin/products');
+	}
+
+	public function getDeleteimage($id)
+	{
+		$image = ProductImages::find($id);
+		$image->delete();
+		File::delete($image->src);
+
+		Session::flash('alert', array('type' => "success", 'messages' => array('Image deleted!')));
+		return Redirect::to(URL::previous());
 	}
 
 	public function getMoveup($id)
@@ -127,6 +142,12 @@ class ProductsController extends Controller {
 	{
 		Products::toggleActive($id);
 		return Redirect::to('admin/products');
+	}
+
+	public function getToggleactiveimage($id)
+	{
+		ProductImages::toggleActive($id);
+		return Redirect::to(URL::previous());
 	}
 
 }

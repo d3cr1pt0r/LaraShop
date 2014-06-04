@@ -1,7 +1,7 @@
 <?php namespace Admin;
-use Eloquent;
+use Eloquent, File;
 
-class ProductImages extends Eloquent {
+class ProductImages extends BaseModel {
 
 	protected $table = 'product_images';
 

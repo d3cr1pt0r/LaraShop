@@ -73,8 +73,14 @@
 							@foreach($product->images as $image)
 								<tr>
 									<td><img src="{{ asset($image->src) }}" width="150"></td>
-									<td>{{ $image->active }}</td>
-									<td>Delete</td>
+									<td>
+										@if($image->active == 1)
+											<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '{{ url('admin/products/toggleactiveimage/'.$image->id) }}';"></td>
+										@else
+											<td><input type="checkbox" name="active" value="1" onclick="window.location = '{{ url('admin/products/toggleactiveimage/'.$image->id) }}';"></td>
+										@endif
+									</td>
+									<td>{{ HTML::link('admin/products/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')) }}</td>
 								</tr>
 							@endforeach
 						</tbody>

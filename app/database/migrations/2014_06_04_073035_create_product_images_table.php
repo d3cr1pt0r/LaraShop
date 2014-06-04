@@ -11,6 +11,7 @@ class CreateProductImagesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('product_id');
+			$table->string('folder');
 			$table->string('src');
 			$table->boolean('active');
 			$table->integer('position');

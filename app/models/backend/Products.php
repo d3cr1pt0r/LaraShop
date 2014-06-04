@@ -1,5 +1,5 @@
 <?php namespace Admin;
-use Eloquent;
+use Eloquent, File;
 
 class Products extends BaseModel {
 
@@ -12,7 +12,21 @@ class Products extends BaseModel {
 
 	public function images()
 	{
-		return $this->hasMany('Admin\ProductImages', 'product_id');
+		return $this->hasMany('Admin\ProductImages', 'product_id')->orderBy('position', 'asc');
+	}
+
+	public function delete()
+	{
+		$images = $this->images()->get();
+
+		if(sizeof($images) != 0)
+		{
+			$folder = $images->first()->folder;
+			File::deleteDirectory($folder);
+			foreach($images as $image)
+				$image->delete();
+		}
+		return parent::delete();
 	}
 
 }

@@ -72,8 +72,14 @@
 							<?php foreach($product->images as $image): ?>
 								<tr>
 									<td><img src="<?php echo asset($image->src); ?>" width="150"></td>
-									<td><?php echo $image->active; ?></td>
-									<td>Delete</td>
+									<td>
+										<?php if($image->active == 1): ?>
+											<td><input type="checkbox" name="active" value="1" checked="checked" onclick="window.location = '<?php echo url('admin/products/toggleactiveimage/'.$image->id); ?>';"></td>
+										<?php else: ?>
+											<td><input type="checkbox" name="active" value="1" onclick="window.location = '<?php echo url('admin/products/toggleactiveimage/'.$image->id); ?>';"></td>
+										<?php endif; ?>
+									</td>
+									<td><?php echo HTML::link('admin/products/deleteimage/'.$image->id, 'Delete', array('class' => 'btn btn-danger btn-xs', 'role' => 'button')); ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
