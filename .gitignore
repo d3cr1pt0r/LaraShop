@@ -3,6 +3,7 @@
 #############
 
 public/uploads
+public/libs/slir/cache
 
 #################
 ## Eclipse
