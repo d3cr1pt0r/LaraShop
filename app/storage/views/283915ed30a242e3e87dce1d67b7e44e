@@ -19,6 +19,7 @@
 				<li><?php echo HTML::link('/admin/products', 'Products'); ?></li>
 				<li><?php echo HTML::link('/admin/carousel', 'Carousel'); ?></li>
 				<li><?php echo HTML::link('/admin/orders', 'Orders'); ?></li>
+				<li><?php echo HTML::link('/admin/languages', 'Languages'); ?></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><?php echo HTML::link('admin/logout', 'Logout'); ?></li>

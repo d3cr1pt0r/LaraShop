@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $title; ?></title>
+	<?php echo HTML::style('css/bootstrap.css'); ?>
+	<?php echo HTML::style('css/style.css');; ?>
+	<?php echo HTML::script('js/jquery.js'); ?>
+	<?php echo HTML::script('js/bootstrap.js'); ?>
+</head>
+<body>
+	<?php echo $__env->make('frontend.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->yieldContent('content'); ?>
+	<?php echo $__env->make('frontend.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>

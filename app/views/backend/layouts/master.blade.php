@@ -19,6 +19,7 @@
 				<li>{{ HTML::link('/admin/products', 'Products') }}</li>
 				<li>{{ HTML::link('/admin/carousel', 'Carousel') }}</li>
 				<li>{{ HTML::link('/admin/orders', 'Orders') }}</li>
+				<li>{{ HTML::link('/admin/languages', 'Languages') }}</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>{{ HTML::link('admin/logout', 'Logout') }}</li>
